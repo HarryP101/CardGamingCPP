@@ -7,9 +7,13 @@
 //
 
 #include <iostream>
+#include "Card.hpp"
+#include "Deck.hpp"
+#include "Hand.hpp"
+#include "Player.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main() {
+    Deck deck;
+    Player harry("Harry", &deck);
     return 0;
 }
