@@ -6,24 +6,24 @@
 //  Copyright © 2019 Harry Prudden. All rights reserved.
 //
 
-#include "Card.hpp"
+#include "BasicCard.hpp"
 #include <string>
 
-Card::Card(int value, CardType cardType) {
-    m_value = value;
+BasicCard::BasicCard(int value, CardType cardType) {
     m_cardType = cardType;
+    m_value = value;
 }
 
-int Card::GetValue() {
+int BasicCard::GetValue() {
     return m_value;
 }
 
-CardType Card::GetType() {
+CardType BasicCard::GetType() {
     return m_cardType;
 }
 
-std::string Card::GetTypeText() {
-    CardType cardType = Card::GetType();
+std::string BasicCard::GetTypeText() {
+    CardType cardType = BasicCard::GetType();
     switch(cardType) {
         case HEARTS:
             return "HEARTS";

@@ -10,19 +10,19 @@
 #define Hand_hpp
 
 #include <stdio.h>
-#include "Card.hpp"
-#include "Deck.hpp"
+#include "BasicCard.hpp"
+#include "BasicDeck.hpp"
 
 class Hand {
 public:
-    Hand(Deck* deck);
-    Card PlayCard(int index);
+    Hand(BasicDeck* deck);
+    BasicCard PlayCard(int index);
     int GetNoCardsInHand();
 private:
-    std::vector<Card> m_cardsInHand;
+    std::vector<BasicCard> m_cardsInHand;
     int m_noCardsInHand;
     int m_totalValueHand;
-    Deck* m_deck;
+    BasicDeck* m_deck;
 };
 
 #endif /* Hand_hpp */

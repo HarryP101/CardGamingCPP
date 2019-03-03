@@ -6,17 +6,18 @@
 //  Copyright © 2019 Harry Prudden. All rights reserved.
 //
 
-#ifndef Card_hpp
-#define Card_hpp
+#ifndef BasicCard_hpp
+#define BasicCard_hpp
 
 #include <stdio.h>
 #include <string>
+#include "../CardHandle.hpp"
 
 enum CardType {HEARTS, DIAMONDS, SPADES, CLUBS};
 
-class Card {
+class BasicCard : public CardHandle {
 public:
-    Card(int value, CardType cardType);
+    BasicCard(int value, CardType cardType);
     int GetValue();
     CardType GetType();
     std::string GetTypeText();

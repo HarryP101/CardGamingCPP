@@ -9,7 +9,7 @@
 #include "Hand.hpp"
 #include <iostream>
 
-Hand::Hand(Deck* deck) {
+Hand::Hand(BasicDeck* deck) {
     m_deck = deck;
     m_noCardsInHand = 3;
     m_totalValueHand = 0;
@@ -23,12 +23,12 @@ int Hand::GetNoCardsInHand() {
     return m_noCardsInHand;
 }
 
-Card Hand::PlayCard(int index) {
+BasicCard Hand::PlayCard(int index) {
     if(m_cardsInHand.empty()){
         std::cout << "Hand is empty!!" << std::endl;
         // Need to add a throw statement here
     }
-    Card card = m_cardsInHand[index];
+    BasicCard card = m_cardsInHand[index];
     m_cardsInHand.erase(m_cardsInHand.begin()+index);
     m_noCardsInHand -= 1;
     return card;
