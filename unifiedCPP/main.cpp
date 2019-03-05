@@ -7,6 +7,10 @@
 //
 
 #include <iostream>
+#include "BasicDeck.hpp"
+#include "BasicPlayer.hpp"
 
 int main() {
+    BasicDeck deck;
+    BasicPlayer player(&deck);
 }

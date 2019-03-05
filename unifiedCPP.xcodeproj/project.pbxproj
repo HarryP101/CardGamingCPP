@@ -10,9 +10,9 @@
 		4A1E7C12221DD4A2006A1BE3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C11221DD4A2006A1BE3 /* main.cpp */; };
 		4A1E7C1A221DD515006A1BE3 /* BasicCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C18221DD515006A1BE3 /* BasicCard.cpp */; };
 		4A1E7C1D221DD86F006A1BE3 /* KeepForLater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C1B221DD86F006A1BE3 /* KeepForLater.cpp */; };
-		4A1E7C20221F21E3006A1BE3 /* Hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C1E221F21E3006A1BE3 /* Hand.cpp */; };
 		4A1E7C2E222C356E006A1BE3 /* BasicDeck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C2C222C356E006A1BE3 /* BasicDeck.cpp */; };
 		4A1E7C31222C4ECB006A1BE3 /* GameSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C2F222C4ECB006A1BE3 /* GameSimulator.cpp */; };
+		4A1E7C77222DBDAD006A1BE3 /* BasicPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4A1E7C75222DBDAD006A1BE3 /* BasicPlayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,13 +34,14 @@
 		4A1E7C19221DD515006A1BE3 /* BasicCard.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BasicCard.hpp; sourceTree = "<group>"; };
 		4A1E7C1B221DD86F006A1BE3 /* KeepForLater.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeepForLater.cpp; sourceTree = "<group>"; };
 		4A1E7C1C221DD86F006A1BE3 /* DeckHandle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DeckHandle.hpp; sourceTree = "<group>"; };
-		4A1E7C1E221F21E3006A1BE3 /* Hand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hand.cpp; sourceTree = "<group>"; };
-		4A1E7C1F221F21E3006A1BE3 /* Hand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Hand.hpp; sourceTree = "<group>"; };
 		4A1E7C2A222C2E9B006A1BE3 /* CardHandle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CardHandle.hpp; sourceTree = "<group>"; };
 		4A1E7C2C222C356E006A1BE3 /* BasicDeck.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BasicDeck.cpp; sourceTree = "<group>"; };
 		4A1E7C2D222C356E006A1BE3 /* BasicDeck.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BasicDeck.hpp; sourceTree = "<group>"; };
 		4A1E7C2F222C4ECB006A1BE3 /* GameSimulator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameSimulator.cpp; sourceTree = "<group>"; };
 		4A1E7C30222C4ECB006A1BE3 /* GameSimulator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameSimulator.hpp; sourceTree = "<group>"; };
+		4A1E7C73222DBCFB006A1BE3 /* PlayerHandle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PlayerHandle.hpp; sourceTree = "<group>"; };
+		4A1E7C75222DBDAD006A1BE3 /* BasicPlayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BasicPlayer.cpp; sourceTree = "<group>"; };
+		4A1E7C76222DBDAD006A1BE3 /* BasicPlayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BasicPlayer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +87,7 @@
 				4A1E7C28222C2724006A1BE3 /* 52CardDeck */,
 				4A1E7C1C221DD86F006A1BE3 /* DeckHandle.hpp */,
 				4A1E7C2A222C2E9B006A1BE3 /* CardHandle.hpp */,
+				4A1E7C73222DBCFB006A1BE3 /* PlayerHandle.hpp */,
 			);
 			path = GameHardware;
 			sourceTree = "<group>";
@@ -93,11 +95,11 @@
 		4A1E7C28222C2724006A1BE3 /* 52CardDeck */ = {
 			isa = PBXGroup;
 			children = (
-				4A1E7C1E221F21E3006A1BE3 /* Hand.cpp */,
-				4A1E7C1F221F21E3006A1BE3 /* Hand.hpp */,
 				4A1E7C2C222C356E006A1BE3 /* BasicDeck.cpp */,
 				4A1E7C2D222C356E006A1BE3 /* BasicDeck.hpp */,
 				4A1E7C19221DD515006A1BE3 /* BasicCard.hpp */,
+				4A1E7C75222DBDAD006A1BE3 /* BasicPlayer.cpp */,
+				4A1E7C76222DBDAD006A1BE3 /* BasicPlayer.hpp */,
 				4A1E7C18221DD515006A1BE3 /* BasicCard.cpp */,
 				4A1E7C2F222C4ECB006A1BE3 /* GameSimulator.cpp */,
 				4A1E7C30222C4ECB006A1BE3 /* GameSimulator.hpp */,
@@ -161,12 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A1E7C20221F21E3006A1BE3 /* Hand.cpp in Sources */,
 				4A1E7C2E222C356E006A1BE3 /* BasicDeck.cpp in Sources */,
 				4A1E7C31222C4ECB006A1BE3 /* GameSimulator.cpp in Sources */,
 				4A1E7C1D221DD86F006A1BE3 /* KeepForLater.cpp in Sources */,
 				4A1E7C12221DD4A2006A1BE3 /* main.cpp in Sources */,
 				4A1E7C1A221DD515006A1BE3 /* BasicCard.cpp in Sources */,
+				4A1E7C77222DBDAD006A1BE3 /* BasicPlayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

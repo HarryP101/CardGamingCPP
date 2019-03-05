@@ -7,11 +7,13 @@
 //
 
 #include <random>
+#include <iostream>
 #include "BasicDeck.hpp"
 #include "BasicCard.hpp"
 #include "../DeckHandle.hpp"
 
 BasicDeck::BasicDeck() : DeckHandle() {
+    m_noOfCardsLeft = 52;
     for(unsigned int i = 2; i < 13; i++) {
         m_cardsLeft.push_back(BasicCard(i, HEARTS));
         m_cardsLeft.push_back(BasicCard(i, DIAMONDS));
