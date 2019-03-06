@@ -31,7 +31,9 @@ public:
     std::vector<BasicCard> GetCardsInHand();
     void PrintCardsInHand();
     void DrawCard();
+    int GetPlayerID();
 private:
+    int m_playerID;
     std::vector<BasicCard> m_cardsInHand;
     BasicDeck* m_deck;
 };

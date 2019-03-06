@@ -13,10 +13,18 @@
 
 int main() {
     GameSimulator Game(2);
-    Game.GetPlayerHandle()->PrintCardsInHand();
+    Game.GetPlayerHandle(1)->PrintCardsInHand();
+    Game.GetPlayerHandle(2)->PrintCardsInHand();
+    
+    //Need a check to see if a player has stuck
+    // Also need to update card values for anything over 10
     while(!Game.CheckIfGameHasEnded()) {
-          Game.AskPlayerStickOrTwist();
-          Game.GetPlayerHandle()->PrintCardsInHand();
-          Game.CheckIfPlayerIsBust();
+        for(int i = 1; i < 3; i++) {
+            std::cout << "Player " << i << std::endl;
+            Game.CheckIfPlayerIsBust(i);
+            Game.AskPlayerStickOrTwist(i);
+            Game.GetPlayerHandle(i)->PrintCardsInHand();
+            
+        }
     }
 }

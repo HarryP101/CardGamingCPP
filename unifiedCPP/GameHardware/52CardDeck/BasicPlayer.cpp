@@ -25,3 +25,7 @@ void BasicPlayer::DrawCard() {
 std::vector<BasicCard> BasicPlayer::GetCardsInHand() {
     return m_cardsInHand;
 }
+
+int BasicPlayer::GetPlayerID() {
+    return m_playerID;
+}

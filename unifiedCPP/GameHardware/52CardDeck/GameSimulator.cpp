@@ -11,38 +11,53 @@
 GameSimulator::GameSimulator(int cardsDealt) {
     m_gameEnded = false;
     m_deck = new BasicDeck();
-    m_player = new BasicPlayer(m_deck, cardsDealt);
+    m_player1 = new BasicPlayer(m_deck, cardsDealt);
+    m_player2 = new BasicPlayer(m_deck, cardsDealt);
 }
 
 BasicDeck* GameSimulator::GetDeckHandle() {
     return m_deck;
 }
 
-BasicPlayer* GameSimulator::GetPlayerHandle() {
-    return m_player;
+BasicPlayer* GameSimulator::GetPlayerHandle(int index) {
+    if(index == 1) {
+        return m_player1;
+    }
+        else return m_player2;
 }
 
 bool GameSimulator::CheckIfGameHasEnded() {
+    // Needs to be more complex - i.e. is both player 1 and 2 bust? Just 1?
     return m_gameEnded;
 }
 
-void GameSimulator::CheckIfPlayerIsBust() {
+void GameSimulator::CheckIfPlayerIsBust(int index) {
     int sum = 0;
-    for(int i = 0; i < m_player->GetNoOfCardsInHand(); i++) {
-        sum += m_player->GetCardsInHand()[i].GetValue();
+    BasicPlayer* player;
+    if(index == 1) {
+        player = m_player1;
     }
-    if(sum > 21) {
+    else player = m_player2;
+    for(int i = 0; i < player->GetNoOfCardsInHand(); i++) {
+        sum += player->GetCardsInHand()[i].GetValue();
+    }
+    if(sum > 50) {
         m_gameEnded = true;
         std::cout << "This player is bust!!" << std::endl;
     }
 }
 
-void GameSimulator::AskPlayerStickOrTwist() {
+void GameSimulator::AskPlayerStickOrTwist(int index) {
+    BasicPlayer* player;
+    if(index == 1) {
+        player = m_player1;
+    }
+    else player = m_player2;
     std::string decision;
     std::cout << "stick or twist? ";
     std::cin >> decision;
     
     if(decision == "twist") {
-        m_player->DrawCard();
+        player->DrawCard();
     }
 }

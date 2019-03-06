@@ -17,14 +17,15 @@ class GameSimulator {
 public:
     GameSimulator(int cardsDealt);
     BasicDeck* GetDeckHandle();
-    BasicPlayer* GetPlayerHandle();
+    BasicPlayer* GetPlayerHandle(int index);
     bool CheckIfGameHasEnded();
-    void AskPlayerStickOrTwist();
-    void CheckIfPlayerIsBust();
+    void AskPlayerStickOrTwist(int index);
+    void CheckIfPlayerIsBust(int index);
 private:
     bool m_gameEnded;
     BasicDeck* m_deck;
-    BasicPlayer* m_player;
+    BasicPlayer* m_player1;
+    BasicPlayer* m_player2;
 };
 
 #endif /* GameSimulator_hpp */
