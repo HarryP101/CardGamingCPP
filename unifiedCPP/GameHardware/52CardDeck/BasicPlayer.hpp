@@ -28,6 +28,7 @@ public:
     int GetNoOfCardsInHand() {
         return m_noOfCardsInHand;
     }
+    std::vector<BasicCard> GetCardsInHand();
     void PrintCardsInHand();
     void DrawCard();
 private:

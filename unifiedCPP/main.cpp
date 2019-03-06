@@ -14,7 +14,9 @@
 int main() {
     GameSimulator Game(2);
     Game.GetPlayerHandle()->PrintCardsInHand();
-    Game.CheckIfGameHasEnded();
-    Game.AskPlayerStickOrTwist();
-    Game.GetPlayerHandle()->PrintCardsInHand();
+    while(!Game.CheckIfGameHasEnded()) {
+          Game.AskPlayerStickOrTwist();
+          Game.GetPlayerHandle()->PrintCardsInHand();
+          Game.CheckIfPlayerIsBust();
+    }
 }

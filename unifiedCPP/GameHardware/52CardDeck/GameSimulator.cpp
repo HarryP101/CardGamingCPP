@@ -27,7 +27,14 @@ bool GameSimulator::CheckIfGameHasEnded() {
 }
 
 void GameSimulator::CheckIfPlayerIsBust() {
-    //check here if the value of the cards is over 21 (for example)
+    int sum = 0;
+    for(int i = 0; i < m_player->GetNoOfCardsInHand(); i++) {
+        sum += m_player->GetCardsInHand()[i].GetValue();
+    }
+    if(sum > 21) {
+        m_gameEnded = true;
+        std::cout << "This player is bust!!" << std::endl;
+    }
 }
 
 void GameSimulator::AskPlayerStickOrTwist() {

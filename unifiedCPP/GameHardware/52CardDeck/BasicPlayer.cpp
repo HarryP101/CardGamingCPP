@@ -21,3 +21,7 @@ void BasicPlayer::DrawCard() {
     m_cardsInHand.push_back(m_deck->DrawCard());
     m_noOfCardsInHand += 1;
 }
+
+std::vector<BasicCard> BasicPlayer::GetCardsInHand() {
+    return m_cardsInHand;
+}
