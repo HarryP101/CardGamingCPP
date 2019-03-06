@@ -9,8 +9,12 @@
 #include <iostream>
 #include "BasicDeck.hpp"
 #include "BasicPlayer.hpp"
+#include "GameSimulator.hpp"
 
 int main() {
-    BasicDeck deck;
-    BasicPlayer player(&deck);
+    GameSimulator Game(2);
+    Game.GetPlayerHandle()->PrintCardsInHand();
+    Game.CheckIfGameHasEnded();
+    Game.AskPlayerStickOrTwist();
+    Game.GetPlayerHandle()->PrintCardsInHand();
 }

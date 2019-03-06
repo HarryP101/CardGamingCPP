@@ -11,13 +11,20 @@
 
 #include <stdio.h>
 #include "BasicDeck.hpp"
+#include "BasicPlayer.hpp"
 
 class GameSimulator {
 public:
-    GameSimulator();
-    DeckHandle* GetDeckHandle();
+    GameSimulator(int cardsDealt);
+    BasicDeck* GetDeckHandle();
+    BasicPlayer* GetPlayerHandle();
+    bool CheckIfGameHasEnded();
+    void AskPlayerStickOrTwist();
+    void CheckIfPlayerIsBust();
 private:
-    DeckHandle* m_deck;
+    bool m_gameEnded;
+    BasicDeck* m_deck;
+    BasicPlayer* m_player;
 };
 
 #endif /* GameSimulator_hpp */

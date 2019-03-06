@@ -17,18 +17,19 @@
 
 class BasicPlayer : public PlayerHandle {
 public:
-    BasicPlayer(BasicDeck* deck) {
+    BasicPlayer(BasicDeck* deck, int cardsDealt) {
         m_deck = deck;
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < cardsDealt; i++) {
             m_cardsInHand.push_back(m_deck->DrawCard());
         }
-        m_noOfCardsInHand = 3;
+        m_noOfCardsInHand = cardsDealt;
     }
     BasicCard PlayCard(int index);
     int GetNoOfCardsInHand() {
         return m_noOfCardsInHand;
     }
     void PrintCardsInHand();
+    void DrawCard();
 private:
     std::vector<BasicCard> m_cardsInHand;
     BasicDeck* m_deck;

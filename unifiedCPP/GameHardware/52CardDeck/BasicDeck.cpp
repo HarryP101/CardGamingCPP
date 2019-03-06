@@ -14,7 +14,7 @@
 
 BasicDeck::BasicDeck() : DeckHandle() {
     m_noOfCardsLeft = 52;
-    for(unsigned int i = 2; i < 13; i++) {
+    for(unsigned int i = 2; i < 15; i++) {
         m_cardsLeft.push_back(BasicCard(i, HEARTS));
         m_cardsLeft.push_back(BasicCard(i, DIAMONDS));
         m_cardsLeft.push_back(BasicCard(i, CLUBS));
