@@ -9,7 +9,8 @@
 #include "GameSimulator.hpp"
 
 GameSimulator::GameSimulator(int cardsDealt) {
-    m_gameEnded = false;
+    m_gameEndedPlayer1 = false;
+    m_gameEndedPlayer2 = false;
     m_whichPlayersTurn = 1;
     m_deck = new BasicDeck();
     m_player1 = new BasicPlayer(m_deck, cardsDealt);
@@ -20,16 +21,16 @@ BasicDeck* GameSimulator::GetDeckHandle() {
     return m_deck;
 }
 
-BasicPlayer* GameSimulator::GetPlayerHandle() {
-    if(m_whichPlayersTurn == 1) {
-        return m_player1;
-    }
-        else return m_player2;
+BasicPlayer* GameSimulator::GetPlayer1() {
+    return m_player1;
+}
+
+BasicPlayer* GameSimulator::GetPlayer2() {
+    return m_player2;
 }
 
 bool GameSimulator::CheckIfGameHasEnded() {
-    // Needs to be more complex - i.e. is both player 1 and 2 bust? Just 1?
-    return m_gameEnded;
+    return (m_gameEndedPlayer1 && m_gameEndedPlayer2);
 }
 
 void GameSimulator::CheckIfPlayerIsBust() {
@@ -43,9 +44,23 @@ void GameSimulator::CheckIfPlayerIsBust() {
         sum += player->GetCardsInHand()[i].GetValue();
     }
     if(sum > 21) {
-        m_gameEnded = true;
-        std::cout << "This player is bust!!" << std::endl;
+        // these need to be made player attributes i think
+        if(m_whichPlayersTurn == 1) {
+            m_gameEndedPlayer1 = true;
+        }
+        if(m_whichPlayersTurn == -1) {
+            m_gameEndedPlayer2 = true;
+        }
+        std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
+        m_whichPlayersTurn = m_whichPlayersTurn * -1;
     }
+}
+
+int GameSimulator::GetPlayerTurn() {
+    if(m_whichPlayersTurn == -1) {
+        return 2;
+    }
+    return m_whichPlayersTurn;
 }
 
 void GameSimulator::AskPlayerStickOrTwist() {
@@ -60,5 +75,11 @@ void GameSimulator::AskPlayerStickOrTwist() {
     
     if(decision == "twist") {
         player->DrawCard();
+        CheckIfPlayerIsBust();
     }
+}
+
+void GameSimulator::GameOutcome() {
+    //print outcome of game here
+    //or store it
 }

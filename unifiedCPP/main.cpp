@@ -11,20 +11,20 @@
 #include "BasicPlayer.hpp"
 #include "GameSimulator.hpp"
 
+//Should change game simulator name to TwoPlayerBlackjackSimulator
+
 int main() {
     GameSimulator Game(2);
-    Game.GetPlayerHandle()->PrintCardsInHand();
-    Game.GetPlayerHandle()->PrintCardsInHand();
+    Game.GetPlayer1()->PrintCardsInHand();
+    Game.GetPlayer2()->PrintCardsInHand();
     
     //Need a check to see if a player has stuck
     // Also need to update card values for anything over 10
+    
     while(!Game.CheckIfGameHasEnded()) {
-        for(int i = 1; i < 3; i++) {
-            std::cout << "Player " << i << std::endl;
-            Game.CheckIfPlayerIsBust();
-            Game.AskPlayerStickOrTwist();
-            Game.GetPlayerHandle()->PrintCardsInHand();
-            
-        }
+        std::cout << "Player " << Game.GetPlayerTurn() << std::endl;
+        Game.AskPlayerStickOrTwist();
+        
     }
 }
+
