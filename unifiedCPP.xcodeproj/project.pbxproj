@@ -98,9 +98,9 @@
 				4A1E7C2C222C356E006A1BE3 /* BasicDeck.cpp */,
 				4A1E7C2D222C356E006A1BE3 /* BasicDeck.hpp */,
 				4A1E7C19221DD515006A1BE3 /* BasicCard.hpp */,
+				4A1E7C18221DD515006A1BE3 /* BasicCard.cpp */,
 				4A1E7C75222DBDAD006A1BE3 /* BasicPlayer.cpp */,
 				4A1E7C76222DBDAD006A1BE3 /* BasicPlayer.hpp */,
-				4A1E7C18221DD515006A1BE3 /* BasicCard.cpp */,
 				4A1E7C2F222C4ECB006A1BE3 /* GameSimulator.cpp */,
 				4A1E7C30222C4ECB006A1BE3 /* GameSimulator.hpp */,
 			);
