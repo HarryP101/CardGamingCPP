@@ -10,6 +10,7 @@
 
 GameSimulator::GameSimulator(int cardsDealt) {
     m_gameEnded = false;
+    m_whichPlayersTurn = 1;
     m_deck = new BasicDeck();
     m_player1 = new BasicPlayer(m_deck, cardsDealt);
     m_player2 = new BasicPlayer(m_deck, cardsDealt);
@@ -19,8 +20,8 @@ BasicDeck* GameSimulator::GetDeckHandle() {
     return m_deck;
 }
 
-BasicPlayer* GameSimulator::GetPlayerHandle(int index) {
-    if(index == 1) {
+BasicPlayer* GameSimulator::GetPlayerHandle() {
+    if(m_whichPlayersTurn == 1) {
         return m_player1;
     }
         else return m_player2;
@@ -31,25 +32,25 @@ bool GameSimulator::CheckIfGameHasEnded() {
     return m_gameEnded;
 }
 
-void GameSimulator::CheckIfPlayerIsBust(int index) {
+void GameSimulator::CheckIfPlayerIsBust() {
     int sum = 0;
     BasicPlayer* player;
-    if(index == 1) {
+    if(m_whichPlayersTurn == 1) {
         player = m_player1;
     }
     else player = m_player2;
     for(int i = 0; i < player->GetNoOfCardsInHand(); i++) {
         sum += player->GetCardsInHand()[i].GetValue();
     }
-    if(sum > 50) {
+    if(sum > 21) {
         m_gameEnded = true;
         std::cout << "This player is bust!!" << std::endl;
     }
 }
 
-void GameSimulator::AskPlayerStickOrTwist(int index) {
+void GameSimulator::AskPlayerStickOrTwist() {
     BasicPlayer* player;
-    if(index == 1) {
+    if(m_whichPlayersTurn == 1) {
         player = m_player1;
     }
     else player = m_player2;

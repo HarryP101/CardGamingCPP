@@ -14,11 +14,16 @@
 
 BasicDeck::BasicDeck() : DeckHandle() {
     m_noOfCardsLeft = 52;
+    int value;
     for(unsigned int i = 2; i < 15; i++) {
-        m_cardsLeft.push_back(BasicCard(i, HEARTS));
-        m_cardsLeft.push_back(BasicCard(i, DIAMONDS));
-        m_cardsLeft.push_back(BasicCard(i, CLUBS));
-        m_cardsLeft.push_back(BasicCard(i, SPADES));
+        value = i;
+        if(i > 10) {
+            value = 10;
+        }
+        m_cardsLeft.push_back(BasicCard(value, HEARTS));
+        m_cardsLeft.push_back(BasicCard(value, DIAMONDS));
+        m_cardsLeft.push_back(BasicCard(value, CLUBS));
+        m_cardsLeft.push_back(BasicCard(value, SPADES));
     }
 }
 
