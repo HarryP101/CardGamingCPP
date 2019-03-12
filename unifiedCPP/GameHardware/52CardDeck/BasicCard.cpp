@@ -9,22 +9,27 @@
 #include "BasicCard.hpp"
 #include <string>
 
-BasicCard::BasicCard(int value, CardType cardType) {
-    m_cardType = cardType;
+BasicCard::BasicCard(int value, CardSuit cardSuit, SpecialCard specialCard) {
+    m_cardSuit = cardSuit;
     m_value = value;
+    m_specialCard = specialCard;
 }
 
 int BasicCard::GetValue() {
     return m_value;
 }
 
-CardType BasicCard::GetType() {
-    return m_cardType;
+CardSuit BasicCard::GetSuit() {
+    return m_cardSuit;
 }
 
-std::string BasicCard::GetTypeText() {
-    CardType cardType = BasicCard::GetType();
-    switch(cardType) {
+SpecialCard BasicCard::GetSpecialType() {
+    return m_specialCard;
+}
+
+std::string BasicCard::GetSuitText() {
+    CardSuit cardSuit = BasicCard::GetSuit();
+    switch(cardSuit) {
         case HEARTS:
             return "HEARTS";
         case DIAMONDS:
@@ -34,5 +39,22 @@ std::string BasicCard::GetTypeText() {
         case CLUBS:
             return "CLUBS";
         }
+    return "";
+}
+
+std::string BasicCard::GetSpecialTypeText() {
+    SpecialCard cardType = BasicCard::GetSpecialType();
+    switch(cardType) {
+        case NONE:
+            return std::to_string(GetValue());
+        case JACK:
+            return "JACK";
+        case QUEEN:
+            return "QUEEN";
+        case KING:
+            return "KING";
+        case ACE:
+            return "ACE";
+    }
     return "";
 }

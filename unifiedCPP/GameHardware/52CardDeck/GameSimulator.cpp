@@ -9,12 +9,10 @@
 #include "GameSimulator.hpp"
 
 GameSimulator::GameSimulator(int cardsDealt) {
-    m_gameEndedPlayer1 = false;
-    m_gameEndedPlayer2 = false;
     m_whichPlayersTurn = 1;
     m_deck = new BasicDeck();
-    m_player1 = new BasicPlayer(m_deck, cardsDealt);
-    m_player2 = new BasicPlayer(m_deck, cardsDealt);
+    m_player1 = new BasicPlayer(m_deck, cardsDealt, 1);
+    m_player2 = new BasicPlayer(m_deck, cardsDealt, 2);
 }
 
 BasicDeck* GameSimulator::GetDeckHandle() {
@@ -30,7 +28,7 @@ BasicPlayer* GameSimulator::GetPlayer2() {
 }
 
 bool GameSimulator::CheckIfGameHasEnded() {
-    return (m_gameEndedPlayer1 && m_gameEndedPlayer2);
+    return (m_player1->GetStatus() && m_player2->GetStatus());
 }
 
 void GameSimulator::CheckIfPlayerIsBust() {
@@ -40,17 +38,12 @@ void GameSimulator::CheckIfPlayerIsBust() {
         player = m_player1;
     }
     else player = m_player2;
+    
     for(int i = 0; i < player->GetNoOfCardsInHand(); i++) {
         sum += player->GetCardsInHand()[i].GetValue();
     }
     if(sum > 21) {
-        // these need to be made player attributes i think
-        if(m_whichPlayersTurn == 1) {
-            m_gameEndedPlayer1 = true;
-        }
-        if(m_whichPlayersTurn == -1) {
-            m_gameEndedPlayer2 = true;
-        }
+        player->SetStatus(true);
         std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
     }

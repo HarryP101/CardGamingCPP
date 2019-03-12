@@ -17,13 +17,27 @@ BasicDeck::BasicDeck() : DeckHandle() {
     int value;
     for(unsigned int i = 2; i < 15; i++) {
         value = i;
-        if(i > 10) {
+        SpecialCard specialCard = NONE;
+        if(i == 11) {
+            specialCard = JACK;
             value = 10;
         }
-        m_cardsLeft.push_back(BasicCard(value, HEARTS));
-        m_cardsLeft.push_back(BasicCard(value, DIAMONDS));
-        m_cardsLeft.push_back(BasicCard(value, CLUBS));
-        m_cardsLeft.push_back(BasicCard(value, SPADES));
+        if(i == 12) {
+            specialCard = QUEEN;
+            value = 10;
+        }
+        if(i == 13) {
+            specialCard = KING;
+            value = 10;
+        }
+        if(i == 14) {
+            specialCard = ACE;
+            value = 10;
+        }
+        m_cardsLeft.push_back(BasicCard(value, HEARTS, specialCard));
+        m_cardsLeft.push_back(BasicCard(value, DIAMONDS, specialCard));
+        m_cardsLeft.push_back(BasicCard(value, CLUBS, specialCard));
+        m_cardsLeft.push_back(BasicCard(value, SPADES, specialCard));
     }
 }
 

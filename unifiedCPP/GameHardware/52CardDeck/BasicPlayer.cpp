@@ -13,8 +13,9 @@ BasicCard BasicPlayer::PlayCard(int index) {
     return m_cardsInHand[index];
 }
 void BasicPlayer::PrintCardsInHand() {
+    std::cout << "Player " << GetPlayerID() << " has" << std::endl;
     for(int i = 0; i < m_noOfCardsInHand; i++)
-        std::cout << m_cardsInHand[i].GetValue() << " of " << m_cardsInHand[i].GetTypeText() << std::endl;
+        std::cout << m_cardsInHand[i].GetSpecialTypeText() << " of " << m_cardsInHand[i].GetSuitText() << std::endl;
 }
 
 void BasicPlayer::DrawCard() {
@@ -28,4 +29,12 @@ std::vector<BasicCard> BasicPlayer::GetCardsInHand() {
 
 int BasicPlayer::GetPlayerID() {
     return m_playerID;
+}
+
+void BasicPlayer::SetStatus(bool goneBust) {
+    m_goneBust = goneBust;
+}
+
+bool BasicPlayer::GetStatus() {
+    return m_goneBust;
 }

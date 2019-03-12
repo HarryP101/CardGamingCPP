@@ -17,8 +17,10 @@
 
 class BasicPlayer : public PlayerHandle {
 public:
-    BasicPlayer(BasicDeck* deck, int cardsDealt) {
+    BasicPlayer(BasicDeck* deck, int cardsDealt, int playerID) {
         m_deck = deck;
+        m_playerID = playerID;
+        m_goneBust = false;
         for(int i = 0; i < cardsDealt; i++) {
             m_cardsInHand.push_back(m_deck->DrawCard());
         }
@@ -32,9 +34,12 @@ public:
     void PrintCardsInHand();
     void DrawCard();
     int GetPlayerID();
+    void SetStatus(bool goneBust);
+    bool GetStatus();
 private:
     int m_playerID;
     std::vector<BasicCard> m_cardsInHand;
     BasicDeck* m_deck;
+    bool m_goneBust;
 };
 #endif /* BasicPlayer_hpp */

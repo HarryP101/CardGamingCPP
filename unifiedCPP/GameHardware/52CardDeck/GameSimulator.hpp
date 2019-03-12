@@ -26,8 +26,6 @@ public:
     int GetPlayerTurn();
 private:
     int m_whichPlayersTurn;
-    bool m_gameEndedPlayer1;
-    bool m_gameEndedPlayer2;
     BasicDeck* m_deck;
     BasicPlayer* m_player1;
     BasicPlayer* m_player2;

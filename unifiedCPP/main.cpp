@@ -19,7 +19,6 @@ int main() {
     Game.GetPlayer2()->PrintCardsInHand();
     
     //Need a check to see if a player has stuck
-    // Also need to update card values for anything over 10
     
     while(!Game.CheckIfGameHasEnded()) {
         std::cout << "Player " << Game.GetPlayerTurn() << std::endl;

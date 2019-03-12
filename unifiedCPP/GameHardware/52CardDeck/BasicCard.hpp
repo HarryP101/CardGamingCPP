@@ -13,17 +13,21 @@
 #include <string>
 #include "../CardHandle.hpp"
 
-enum CardType {HEARTS, DIAMONDS, SPADES, CLUBS};
+enum CardSuit {HEARTS, DIAMONDS, SPADES, CLUBS};
+enum SpecialCard {NONE, JACK, QUEEN, KING, ACE};
 
 class BasicCard : public CardHandle {
 public:
-    BasicCard(int value, CardType cardType);
+    BasicCard(int value, CardSuit cardType, SpecialCard specialCard);
     int GetValue();
-    CardType GetType();
-    std::string GetTypeText();
+    CardSuit GetSuit();
+    SpecialCard GetSpecialType();
+    std::string GetSpecialTypeText();
+    std::string GetSuitText();
 private:
     int m_value;
-    CardType m_cardType;
+    CardSuit m_cardSuit;
+    SpecialCard m_specialCard;
     std::string m_cardTypeText;
 };
 
