@@ -70,6 +70,11 @@ void GameSimulator::AskPlayerStickOrTwist() {
         player->DrawCard();
         CheckIfPlayerIsBust();
     }
+    
+    if(decision == "stick") {
+        m_whichPlayersTurn = m_whichPlayersTurn * -1;
+        player->SetStatus(true);
+    }
 }
 
 void GameSimulator::GameOutcome() {
