@@ -84,7 +84,7 @@
 		4A1E7C27222C26E9006A1BE3 /* GameHardware */ = {
 			isa = PBXGroup;
 			children = (
-				4A1E7C28222C2724006A1BE3 /* 52CardDeck */,
+				4A1E7C28222C2724006A1BE3 /* Blackjack */,
 				4A1E7C1C221DD86F006A1BE3 /* DeckHandle.hpp */,
 				4A1E7C2A222C2E9B006A1BE3 /* CardHandle.hpp */,
 				4A1E7C73222DBCFB006A1BE3 /* PlayerHandle.hpp */,
@@ -92,7 +92,7 @@
 			path = GameHardware;
 			sourceTree = "<group>";
 		};
-		4A1E7C28222C2724006A1BE3 /* 52CardDeck */ = {
+		4A1E7C28222C2724006A1BE3 /* Blackjack */ = {
 			isa = PBXGroup;
 			children = (
 				4A1E7C2C222C356E006A1BE3 /* BasicDeck.cpp */,
@@ -104,7 +104,7 @@
 				4A1E7C2F222C4ECB006A1BE3 /* GameSimulator.cpp */,
 				4A1E7C30222C4ECB006A1BE3 /* GameSimulator.hpp */,
 			);
-			path = 52CardDeck;
+			path = Blackjack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

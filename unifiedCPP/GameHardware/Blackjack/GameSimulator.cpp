@@ -62,6 +62,9 @@ void GameSimulator::AskPlayerStickOrTwist() {
         player = m_player1;
     }
     else player = m_player2;
+    
+    // Add a decider function. Will take deck and cards in hand. Will make it more sophisticated.
+    // Make it a separate class?
     std::string decision;
     std::cout << "stick or twist? ";
     std::cin >> decision;
@@ -80,4 +83,8 @@ void GameSimulator::AskPlayerStickOrTwist() {
 void GameSimulator::GameOutcome() {
     //print outcome of game here
     //or store it
+}
+
+std::string GameSimulator::Decider(std::vector<BasicCard> cardsInHand) {
+    return "twist";
 }
