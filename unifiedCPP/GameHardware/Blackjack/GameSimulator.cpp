@@ -13,6 +13,7 @@ GameSimulator::GameSimulator(int cardsDealt) {
     m_deck = new BasicDeck();
     m_player1 = new BasicPlayer(m_deck, cardsDealt, 1);
     m_player2 = new BasicPlayer(m_deck, cardsDealt, 2);
+    m_currentPlayer = m_player1;
 }
 
 BasicDeck* GameSimulator::GetDeckHandle() {
@@ -32,20 +33,12 @@ bool GameSimulator::CheckIfGameHasEnded() {
 }
 
 void GameSimulator::CheckIfPlayerIsBust() {
-    int sum = 0;
-    BasicPlayer* player;
-    if(m_whichPlayersTurn == 1) {
-        player = m_player1;
-    }
-    else player = m_player2;
-    
-    for(int i = 0; i < player->GetNoOfCardsInHand(); i++) {
-        sum += player->GetCardsInHand()[i].GetValue();
-    }
+    int sum = m_currentPlayer->GetValueInHand();
     if(sum > 21) {
-        player->SetStatus(true);
+        m_currentPlayer->SetStatus(true);
         std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
+        SetNextPlayer();
     }
 }
 
@@ -56,27 +49,29 @@ int GameSimulator::GetPlayerTurn() {
     return m_whichPlayersTurn;
 }
 
-void GameSimulator::AskPlayerStickOrTwist() {
-    BasicPlayer* player;
-    if(m_whichPlayersTurn == 1) {
-        player = m_player1;
+void GameSimulator::SetNextPlayer() {
+    switch(GetPlayerTurn()) {
+        case(1):
+            m_currentPlayer = m_player1;
+        case(2):
+            m_currentPlayer = m_player2;
     }
-    else player = m_player2;
-    
-    // Add a decider function. Will take deck and cards in hand. Will make it more sophisticated.
-    // Make it a separate class?
+}
+
+void GameSimulator::AskPlayerStickOrTwist() {
     std::cout << "stick or twist? ";
     std::string decision = Decider();
     std::cout << "Decision was " << decision << std::endl;
     
     if(decision == "twist") {
-        player->DrawCard();
+        m_currentPlayer->DrawCard();
         CheckIfPlayerIsBust();
     }
     
     if(decision == "stick") {
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
-        player->SetStatus(true);
+        m_currentPlayer->SetStatus(true);
+        SetNextPlayer();
     }
 }
 
@@ -86,12 +81,7 @@ void GameSimulator::GameOutcome() {
 }
 
 std::string GameSimulator::Decider() {
-    BasicPlayer* player;
-    if(m_whichPlayersTurn == 1) {
-        player = m_player1;
-    }
-    else player = m_player2;
-    if(player->GetValueInHand() < 15) {
+    if(m_currentPlayer->GetValueInHand() < 18) {
         return "twist";
     }
     else return "stick";
