@@ -7,7 +7,7 @@
 //
 
 #include "GameSimulator.hpp"
-
+//include state variable for pointer to current player
 GameSimulator::GameSimulator(int cardsDealt) {
     m_whichPlayersTurn = 1;
     m_deck = new BasicDeck();
@@ -65,9 +65,9 @@ void GameSimulator::AskPlayerStickOrTwist() {
     
     // Add a decider function. Will take deck and cards in hand. Will make it more sophisticated.
     // Make it a separate class?
-    std::string decision;
     std::cout << "stick or twist? ";
-    std::cin >> decision;
+    std::string decision = Decider();
+    std::cout << "Decision was " << decision << std::endl;
     
     if(decision == "twist") {
         player->DrawCard();
@@ -85,6 +85,14 @@ void GameSimulator::GameOutcome() {
     //or store it
 }
 
-std::string GameSimulator::Decider(std::vector<BasicCard> cardsInHand) {
-    return "twist";
+std::string GameSimulator::Decider() {
+    BasicPlayer* player;
+    if(m_whichPlayersTurn == 1) {
+        player = m_player1;
+    }
+    else player = m_player2;
+    if(player->GetValueInHand() < 15) {
+        return "twist";
+    }
+    else return "stick";
 }

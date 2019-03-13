@@ -24,7 +24,7 @@ public:
     void AskPlayerStickOrTwist();
     void CheckIfPlayerIsBust();
     int GetPlayerTurn();
-    std::string Decider(std::vector<BasicCard> cardsInHand);
+    std::string Decider();
 private:
     int m_whichPlayersTurn;
     BasicDeck* m_deck;

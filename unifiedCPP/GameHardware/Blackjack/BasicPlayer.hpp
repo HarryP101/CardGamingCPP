@@ -31,6 +31,7 @@ public:
         return m_noOfCardsInHand;
     }
     std::vector<BasicCard> GetCardsInHand();
+    int GetValueInHand();
     void PrintCardsInHand();
     void DrawCard();
     int GetPlayerID();

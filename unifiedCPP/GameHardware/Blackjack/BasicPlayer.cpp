@@ -38,3 +38,11 @@ void BasicPlayer::SetStatus(bool goneBust) {
 bool BasicPlayer::GetStatus() {
     return m_goneBust;
 }
+
+int BasicPlayer::GetValueInHand() {
+    int sum = 0;
+    for(int i = 0; i < m_noOfCardsInHand; i++) {
+        sum += m_cardsInHand[i].GetValue();
+    }
+    return sum;
+}
