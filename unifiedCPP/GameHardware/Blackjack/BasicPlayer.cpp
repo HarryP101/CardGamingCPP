@@ -31,11 +31,16 @@ int BasicPlayer::GetPlayerID() {
     return m_playerID;
 }
 
-void BasicPlayer::SetStatus(bool goneBust) {
+void BasicPlayer::SetStatus(bool finished, bool goneBust) {
     m_goneBust = goneBust;
+    m_finished = finished;
 }
 
 bool BasicPlayer::GetStatus() {
+    return m_finished;
+}
+
+bool BasicPlayer::GoneBust() {
     return m_goneBust;
 }
 

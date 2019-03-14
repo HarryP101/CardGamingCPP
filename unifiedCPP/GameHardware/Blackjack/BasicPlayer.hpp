@@ -21,6 +21,7 @@ public:
         m_deck = deck;
         m_playerID = playerID;
         m_goneBust = false;
+        m_finished = false;
         for(int i = 0; i < cardsDealt; i++) {
             m_cardsInHand.push_back(m_deck->DrawCard());
         }
@@ -35,12 +36,14 @@ public:
     void PrintCardsInHand();
     void DrawCard();
     int GetPlayerID();
-    void SetStatus(bool goneBust);
+    void SetStatus(bool finished, bool goneBust);
     bool GetStatus();
+    bool GoneBust();
 private:
     int m_playerID;
     std::vector<BasicCard> m_cardsInHand;
     BasicDeck* m_deck;
     bool m_goneBust;
+    bool m_finished;
 };
 #endif /* BasicPlayer_hpp */

@@ -35,7 +35,7 @@ bool GameSimulator::CheckIfGameHasEnded() {
 void GameSimulator::CheckIfPlayerIsBust() {
     int sum = m_currentPlayer->GetValueInHand();
     if(sum > 21) {
-        m_currentPlayer->SetStatus(true);
+        m_currentPlayer->SetStatus(true, true);
         std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
         SetNextPlayer();
@@ -70,18 +70,37 @@ void GameSimulator::AskPlayerStickOrTwist() {
     
     if(decision == "stick") {
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
-        m_currentPlayer->SetStatus(true);
+        m_currentPlayer->SetStatus(true, false);
         SetNextPlayer();
     }
 }
 
 void GameSimulator::GameOutcome() {
-    //print outcome of game here
-    //or store it
+    if(m_player1->GoneBust() && m_player2 ->GoneBust()) {
+        std::cout << "No winners here!" << std::endl;
+        return;
+    }
+    if(m_player1->GoneBust()) {
+        std::cout << "Player 2 wins!!" << std::endl;
+        return;
+    }
+    if(m_player2->GoneBust()) {
+        std::cout << "Player 1 wins!!" << std::endl;
+        return;
+    }
+    if(m_player1->GetValueInHand() > m_player2->GetValueInHand()) {
+        std::cout << "Player 1 wins with " << m_player1->GetValueInHand() << std::endl;
+        return;
+    }
+    if(m_player1->GetValueInHand() < m_player2->GetValueInHand()) {
+        std::cout << "Player 2 wins with " << m_player2->GetValueInHand() << std::endl;
+        return;
+    }
+    std::cout << "Its a draw!!" << std::endl;
 }
 
 std::string GameSimulator::Decider() {
-    if(m_currentPlayer->GetValueInHand() < 18) {
+    if(m_currentPlayer->GetValueInHand() < 16) {
         return "twist";
     }
     else return "stick";

@@ -23,7 +23,7 @@ int main() {
     while(!Game.CheckIfGameHasEnded()) {
         std::cout << "Player " << Game.GetPlayerTurn() << std::endl;
         Game.AskPlayerStickOrTwist();
-        
     }
+    Game.GameOutcome();
 }
 
