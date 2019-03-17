@@ -51,3 +51,13 @@ int BasicPlayer::GetValueInHand() {
     }
     return sum;
 }
+
+void BasicPlayer::Reset() {
+    m_goneBust = false;
+    m_finished = false;
+    m_cardsInHand.clear();
+    for(int i = 0; i < m_cardsDealt; i++) {
+        m_cardsInHand.push_back(m_deck->DrawCard());
+    }
+    m_noOfCardsInHand = m_cardsDealt;
+}

@@ -18,7 +18,9 @@ public:
     BasicDeck();
     int GetNoOfCardsLeft();
     BasicCard DrawCard();
+    void AddCard(BasicCard card);
 private:
     std::vector<BasicCard> m_cardsLeft;
+    int m_noOfCardsLeft;
 };
 #endif /* BasicDeck_hpp */

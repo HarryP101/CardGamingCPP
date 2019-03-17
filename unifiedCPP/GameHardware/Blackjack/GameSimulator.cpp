@@ -75,28 +75,33 @@ void GameSimulator::AskPlayerStickOrTwist() {
     }
 }
 
-void GameSimulator::GameOutcome() {
+int GameSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
     if(m_player1->GoneBust() && m_player2 ->GoneBust()) {
         std::cout << "No winners here!" << std::endl;
-        return;
+        return 0;
     }
     if(m_player1->GoneBust()) {
         std::cout << "Player 2 wins!!" << std::endl;
-        return;
+        results[m_player2] += 1;
+        return 2;
     }
     if(m_player2->GoneBust()) {
         std::cout << "Player 1 wins!!" << std::endl;
-        return;
+        results[m_player1] += 1;
+        return 1;
     }
     if(m_player1->GetValueInHand() > m_player2->GetValueInHand()) {
         std::cout << "Player 1 wins with " << m_player1->GetValueInHand() << std::endl;
-        return;
+        results[m_player1] += 1;
+        return 1;
     }
     if(m_player1->GetValueInHand() < m_player2->GetValueInHand()) {
         std::cout << "Player 2 wins with " << m_player2->GetValueInHand() << std::endl;
-        return;
+        results[m_player2] += 1;
+        return 2;
     }
     std::cout << "Its a draw!!" << std::endl;
+    return 0;
 }
 
 std::string GameSimulator::Decider() {
@@ -107,13 +112,18 @@ std::string GameSimulator::Decider() {
 }
 
 void GameSimulator::Reset(int cardsDealt) {
-    delete m_player1;
-    delete m_player2;
-    delete m_deck;
-    
     m_whichPlayersTurn = 1;
-    m_deck = new BasicDeck();
-    m_player1 = new BasicPlayer(m_deck, cardsDealt, 1);
-    m_player2 = new BasicPlayer(m_deck, cardsDealt, 2);
     m_currentPlayer = m_player1;
+    
+    // Reshuffle into deck
+    for(int i = 0; i < m_player1->GetNoOfCardsInHand(); i++) {
+        m_deck->AddCard(m_player1->GetCardsInHand()[i]);
+    }
+    
+    for(int i = 0; i < m_player2->GetNoOfCardsInHand(); i++) {
+        m_deck->AddCard(m_player2->GetCardsInHand()[i]);
+    }
+    
+    m_player1->Reset();
+    m_player2->Reset();
 }

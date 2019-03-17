@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "BasicDeck.hpp"
 #include "BasicPlayer.hpp"
+#include <map>
 
 class GameSimulator {
 public:
@@ -20,7 +21,7 @@ public:
     BasicPlayer* GetPlayer1();
     BasicPlayer* GetPlayer2();
     bool CheckIfGameHasEnded();
-    void GameOutcome();
+    int GameOutcome(std::map<BasicPlayer*, int>&);
     void AskPlayerStickOrTwist();
     void CheckIfPlayerIsBust();
     int GetPlayerTurn();

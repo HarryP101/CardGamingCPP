@@ -56,3 +56,7 @@ BasicCard BasicDeck::DrawCard() {
     return cardDrawn;
 }
 
+void BasicDeck::AddCard(BasicCard card) {
+    m_cardsLeft.push_back(card);
+    m_noOfCardsLeft += 1;
+}
