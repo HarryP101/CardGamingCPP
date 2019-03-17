@@ -55,3 +55,4 @@ BasicCard BasicDeck::DrawCard() {
     m_cardsLeft.erase(m_cardsLeft.begin()+index);
     return cardDrawn;
 }
+

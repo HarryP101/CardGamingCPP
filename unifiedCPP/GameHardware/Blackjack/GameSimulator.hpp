@@ -26,6 +26,7 @@ public:
     int GetPlayerTurn();
     void SetNextPlayer();
     std::string Decider();
+    void Reset(int cardsDealt);
 private:
     int m_whichPlayersTurn;
     BasicDeck* m_deck;

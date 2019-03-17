@@ -36,7 +36,7 @@ void GameSimulator::CheckIfPlayerIsBust() {
     int sum = m_currentPlayer->GetValueInHand();
     if(sum > 21) {
         m_currentPlayer->SetStatus(true, true);
-        std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
+//std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
         SetNextPlayer();
     }
@@ -59,9 +59,9 @@ void GameSimulator::SetNextPlayer() {
 }
 
 void GameSimulator::AskPlayerStickOrTwist() {
-    std::cout << "stick or twist? ";
+//std::cout << "stick or twist? ";
     std::string decision = Decider();
-    std::cout << "Decision was " << decision << std::endl;
+//std::cout << "Decision was " << decision << std::endl;
     
     if(decision == "twist") {
         m_currentPlayer->DrawCard();
@@ -104,4 +104,16 @@ std::string GameSimulator::Decider() {
         return "twist";
     }
     else return "stick";
+}
+
+void GameSimulator::Reset(int cardsDealt) {
+    delete m_player1;
+    delete m_player2;
+    delete m_deck;
+    
+    m_whichPlayersTurn = 1;
+    m_deck = new BasicDeck();
+    m_player1 = new BasicPlayer(m_deck, cardsDealt, 1);
+    m_player2 = new BasicPlayer(m_deck, cardsDealt, 2);
+    m_currentPlayer = m_player1;
 }

@@ -19,11 +19,13 @@ int main() {
     Game.GetPlayer2()->PrintCardsInHand();
     
     //Need a check to see if a player has stuck
-    
-    while(!Game.CheckIfGameHasEnded()) {
-        std::cout << "Player " << Game.GetPlayerTurn() << std::endl;
-        Game.AskPlayerStickOrTwist();
+    for(int i = 0; i < 100; i++) {
+        while(!Game.CheckIfGameHasEnded()) {
+            //std::cout << "Player " << Game.GetPlayerTurn() << std::endl;
+            Game.AskPlayerStickOrTwist();
+        }
+        Game.GameOutcome();
+        Game.Reset(2);
     }
-    Game.GameOutcome();
 }
 
