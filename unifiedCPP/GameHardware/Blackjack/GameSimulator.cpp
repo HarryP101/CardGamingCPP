@@ -28,6 +28,10 @@ BasicPlayer* GameSimulator::GetPlayer2() {
     return m_player2;
 }
 
+BasicPlayer* GameSimulator::GetCurrentPlayer() {
+    return m_currentPlayer;
+}
+
 bool GameSimulator::CheckIfGameHasEnded() {
     return (m_player1->GetStatus() && m_player2->GetStatus());
 }
@@ -59,6 +63,7 @@ void GameSimulator::SetNextPlayer() {
 }
 
 void GameSimulator::AskPlayerStickOrTwist() {
+    //Pass in strategy function here to determine to stick or twist
 //std::cout << "stick or twist? ";
     std::string decision = Decider();
 //std::cout << "Decision was " << decision << std::endl;
@@ -105,11 +110,17 @@ int GameSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
 }
 
 std::string GameSimulator::Decider() {
-    int value;
+    int value = 1;
     if(GetPlayerTurn() == 1) {
+        value = 17;
+    }
+    if(GetPlayerTurn() == 2) {
+        if(m_player1->GoneBust()) {
+            value = 1;
+            //Introduce safe strategy to maximise winning
+        }
         value = 16;
     }
-    else value  = 19;
     if(m_currentPlayer->GetValueInHand() < value) {
         return "twist";
     }

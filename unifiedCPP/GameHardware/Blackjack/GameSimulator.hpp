@@ -20,6 +20,7 @@ public:
     BasicDeck* GetDeckHandle();
     BasicPlayer* GetPlayer1();
     BasicPlayer* GetPlayer2();
+    BasicPlayer* GetCurrentPlayer();
     bool CheckIfGameHasEnded();
     int GameOutcome(std::map<BasicPlayer*, int>&);
     void AskPlayerStickOrTwist();

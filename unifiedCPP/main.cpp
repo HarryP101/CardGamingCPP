@@ -36,3 +36,6 @@ int main() {
     
 }
 
+// TODO: Add strategy function to basic player to decide whether to stick or twist or not.
+// TODO: Keep track of how 'hot' the deck is; use this to influence strategy on riskier decisions
+// TODO: Make new Card game which uses basic deck, basic card
