@@ -77,35 +77,40 @@ void GameSimulator::AskPlayerStickOrTwist() {
 
 int GameSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
     if(m_player1->GoneBust() && m_player2 ->GoneBust()) {
-        std::cout << "No winners here!" << std::endl;
+        //std::cout << "No winners here!" << std::endl;
         return 0;
     }
     if(m_player1->GoneBust()) {
-        std::cout << "Player 2 wins!!" << std::endl;
+        //std::cout << "Player 2 wins!!" << std::endl;
         results[m_player2] += 1;
         return 2;
     }
     if(m_player2->GoneBust()) {
-        std::cout << "Player 1 wins!!" << std::endl;
+        //std::cout << "Player 1 wins!!" << std::endl;
         results[m_player1] += 1;
         return 1;
     }
     if(m_player1->GetValueInHand() > m_player2->GetValueInHand()) {
-        std::cout << "Player 1 wins with " << m_player1->GetValueInHand() << std::endl;
+        //std::cout << "Player 1 wins with " << m_player1->GetValueInHand() << std::endl;
         results[m_player1] += 1;
         return 1;
     }
     if(m_player1->GetValueInHand() < m_player2->GetValueInHand()) {
-        std::cout << "Player 2 wins with " << m_player2->GetValueInHand() << std::endl;
+        //std::cout << "Player 2 wins with " << m_player2->GetValueInHand() << std::endl;
         results[m_player2] += 1;
         return 2;
     }
-    std::cout << "Its a draw!!" << std::endl;
+    //std::cout << "Its a draw!!" << std::endl;
     return 0;
 }
 
 std::string GameSimulator::Decider() {
-    if(m_currentPlayer->GetValueInHand() < 16) {
+    int value;
+    if(GetPlayerTurn() == 1) {
+        value = 16;
+    }
+    else value  = 19;
+    if(m_currentPlayer->GetValueInHand() < value) {
         return "twist";
     }
     else return "stick";

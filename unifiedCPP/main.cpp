@@ -22,11 +22,7 @@ int main() {
     resultsContainer[Game.GetPlayer1()] = 0;
     resultsContainer[Game.GetPlayer2()] = 0;
     
-    Game.GetPlayer1()->PrintCardsInHand();
-    Game.GetPlayer2()->PrintCardsInHand();
-    
-    //Need a check to see if a player has stuck
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 10000; i++) {
         while(!Game.CheckIfGameHasEnded()) {
             //std::cout << "Player " << Game.GetPlayerTurn() << std::endl;
             Game.AskPlayerStickOrTwist();
@@ -34,7 +30,9 @@ int main() {
         Game.GameOutcome(resultsContainer);
         Game.Reset(2);
     }
-    std::cout << resultsContainer.at(Game.GetPlayer1()) << std::endl;
+    std::cout << "Player 1 won " << resultsContainer.at(Game.GetPlayer1())/100.0 << "%" << std::endl;
+    std::cout << "Player 2 won " << resultsContainer.at(Game.GetPlayer2())/100.0 << "%" << std::endl;
+    std::cout << "The rest were draws or both went bust" << std::endl;
     
 }
 
