@@ -92,6 +92,11 @@ class TestCard {
         self.shape.position = Position
         self.shape.isHidden = Hide
     }
+    
+    func Resize(scaleX: CGFloat, scaleY: CGFloat) {
+        self.shape.xScale = scaleX
+        self.shape.yScale = scaleY
+    }
     // Probably create another function here to show the card - maybe as it being drawn and then after on the scene?
     
 }

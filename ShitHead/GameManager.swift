@@ -32,6 +32,7 @@ class GameManager {
         m_player.cardsInHand[1].ControlShape(Position: CGPoint(x: 550/2 - 170, y: -1100/2), Hide: false)
         self.m_scene.addChild(m_player.cardsInHand[0].shape)
         self.m_scene.addChild(m_player.cardsInHand[1].shape)
+        print("frame size = ", self.m_scene.frame.size)
         
         // Add a stick and twist button
         
@@ -48,10 +49,23 @@ class GameManager {
             }
         }
     }
+    
+    func DrawCard() {
+        
+        if m_player.numberOfCardsInHand >= 3 {
+            m_player.cardsInHand.last!.ControlShape(Position: CGPoint(x: 0, y: 0), Hide: true)
+            print(m_player.numberOfCardsInHand!)
+        }
+        m_player.DrawCard()
+        print("Draw card")
+
+        m_player.cardsInHand.last!.ControlShape(Position: CGPoint(x: -85, y: 0), Hide: false)
+        self.m_scene.addChild(m_player.cardsInHand.last!.shape)
+        
+    }
 
     
     func renderChange() {
-        
     }
     
     private func finishAnimation() {

@@ -73,6 +73,9 @@ class GameScene: SKScene {
                 if node.name == "king of spades" {
                     startGame()
                 }
+                if node.name == "twist" {
+                    game.DrawCard()
+                }
                 // If node is a card in players hand
                 // Play that card
             }
@@ -147,6 +150,7 @@ class GameScene: SKScene {
         self.addChild(stickButton)
         
         twistButton = SKShapeNode(circleOfRadius: 30)
+        twistButton.name = "twist"
         twistButton.fillColor = SKColor.yellow
         twistButton.zPosition = 2
         twistButton.isHidden = true
