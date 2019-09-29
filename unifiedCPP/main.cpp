@@ -9,7 +9,7 @@
 #include <iostream>
 #include "BasicDeck.hpp"
 #include "BasicPlayer.hpp"
-#include "GameSimulator.hpp"
+#include "BlackJackSimulator.hpp"
 #include <map>
 
 //Should change game simulator name to TwoPlayerBlackjackSimulator
@@ -17,12 +17,12 @@
 int main() {
     std::map<BasicPlayer*, int> resultsContainer;
     
-    GameSimulator Game(2);
+    BlackJackSimulator Game(2);
     
     resultsContainer[Game.GetPlayer1()] = 0;
     resultsContainer[Game.GetPlayer2()] = 0;
     
-    for(int i = 0; i < 10000; i++) {
+    for(int i = 0; i < 100; i++) {
         while(!Game.CheckIfGameHasEnded()) {
             //std::cout << "Player " << Game.GetPlayerTurn() << std::endl;
             Game.AskPlayerStickOrTwist();

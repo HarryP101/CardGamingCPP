@@ -6,9 +6,10 @@
 //  Copyright © 2019 Harry Prudden. All rights reserved.
 //
 
-#include "GameSimulator.hpp"
+#include "BlackJackSimulator.hpp"
+
 //include state variable for pointer to current player
-GameSimulator::GameSimulator(int cardsDealt) {
+BlackJackSimulator::BlackJackSimulator(int cardsDealt) {
     m_whichPlayersTurn = 1;
     m_deck = new BasicDeck();
     m_player1 = new BasicPlayer(m_deck, cardsDealt, 1);
@@ -16,27 +17,27 @@ GameSimulator::GameSimulator(int cardsDealt) {
     m_currentPlayer = m_player1;
 }
 
-BasicDeck* GameSimulator::GetDeckHandle() {
-    return m_deck;
+int BlackJackSimulator::GetPlayerTurn() {
+    if(m_whichPlayersTurn == -1) {
+        return 2;
+    }
+    return m_whichPlayersTurn;
 }
 
-BasicPlayer* GameSimulator::GetPlayer1() {
-    return m_player1;
+void BlackJackSimulator::SetNextPlayer() {
+    switch(GetPlayerTurn()) {
+        case(1):
+            m_currentPlayer = m_player1;
+        case(2):
+            m_currentPlayer = m_player2;
+    }
 }
 
-BasicPlayer* GameSimulator::GetPlayer2() {
-    return m_player2;
-}
-
-BasicPlayer* GameSimulator::GetCurrentPlayer() {
-    return m_currentPlayer;
-}
-
-bool GameSimulator::CheckIfGameHasEnded() {
+bool BlackJackSimulator::CheckIfGameHasEnded() {
     return (m_player1->GetStatus() && m_player2->GetStatus());
 }
 
-void GameSimulator::CheckIfPlayerIsBust() {
+void BlackJackSimulator::CheckIfPlayerIsBust() {
     int sum = m_currentPlayer->GetValueInHand();
     if(sum > 21) {
         m_currentPlayer->SetStatus(true, true);
@@ -46,23 +47,7 @@ void GameSimulator::CheckIfPlayerIsBust() {
     }
 }
 
-int GameSimulator::GetPlayerTurn() {
-    if(m_whichPlayersTurn == -1) {
-        return 2;
-    }
-    return m_whichPlayersTurn;
-}
-
-void GameSimulator::SetNextPlayer() {
-    switch(GetPlayerTurn()) {
-        case(1):
-            m_currentPlayer = m_player1;
-        case(2):
-            m_currentPlayer = m_player2;
-    }
-}
-
-void GameSimulator::AskPlayerStickOrTwist() {
+void BlackJackSimulator::AskPlayerStickOrTwist() {
     //Pass in strategy function here to determine to stick or twist
 //std::cout << "stick or twist? ";
     std::string decision = Decider();
@@ -80,7 +65,7 @@ void GameSimulator::AskPlayerStickOrTwist() {
     }
 }
 
-int GameSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
+int BlackJackSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
     if(m_player1->GoneBust() && m_player2 ->GoneBust()) {
         //std::cout << "No winners here!" << std::endl;
         return 0;
@@ -109,7 +94,7 @@ int GameSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
     return 0;
 }
 
-std::string GameSimulator::Decider() {
+std::string BlackJackSimulator::Decider() {
     int value = 1;
     if(GetPlayerTurn() == 1) {
         value = 17;
@@ -127,7 +112,7 @@ std::string GameSimulator::Decider() {
     else return "stick";
 }
 
-void GameSimulator::Reset(int cardsDealt) {
+void BlackJackSimulator::Reset(int cardsDealt) {
     m_whichPlayersTurn = 1;
     m_currentPlayer = m_player1;
     

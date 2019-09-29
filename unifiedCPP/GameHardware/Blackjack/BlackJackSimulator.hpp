@@ -12,15 +12,12 @@
 #include <stdio.h>
 #include "BasicDeck.hpp"
 #include "BasicPlayer.hpp"
+#include "Simulator.hpp"
 #include <map>
 
-class GameSimulator {
+class BlackJackSimulator : public Simulator {
 public:
-    GameSimulator(int cardsDealt);
-    BasicDeck* GetDeckHandle();
-    BasicPlayer* GetPlayer1();
-    BasicPlayer* GetPlayer2();
-    BasicPlayer* GetCurrentPlayer();
+    BlackJackSimulator(int cardsDealt);
     bool CheckIfGameHasEnded();
     int GameOutcome(std::map<BasicPlayer*, int>&);
     void AskPlayerStickOrTwist();
@@ -29,12 +26,6 @@ public:
     void SetNextPlayer();
     std::string Decider();
     void Reset(int cardsDealt);
-private:
-    int m_whichPlayersTurn;
-    BasicDeck* m_deck;
-    BasicPlayer* m_player1;
-    BasicPlayer* m_player2;
-    BasicPlayer* m_currentPlayer;
 };
 
 #endif /* GameSimulator_hpp */
