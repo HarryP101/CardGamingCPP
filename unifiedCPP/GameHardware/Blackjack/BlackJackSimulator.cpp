@@ -25,11 +25,11 @@ int BlackJackSimulator::GetPlayerTurn() {
 }
 
 void BlackJackSimulator::SetNextPlayer() {
-    switch(GetPlayerTurn()) {
-        case(1):
-            m_currentPlayer = m_player1;
-        case(2):
-            m_currentPlayer = m_player2;
+    if(m_whichPlayersTurn == -1) {
+        m_currentPlayer = m_player2;
+    }
+    else {
+        m_currentPlayer = m_player1;
     }
 }
 
@@ -41,7 +41,6 @@ void BlackJackSimulator::CheckIfPlayerIsBust() {
     int sum = m_currentPlayer->GetValueInHand();
     if(sum > 21) {
         m_currentPlayer->SetStatus(true, true);
-//std::cout << "Player " << GetPlayerTurn() << " is bust!" << std::endl;
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
         SetNextPlayer();
     }
@@ -104,7 +103,9 @@ std::string BlackJackSimulator::Decider() {
             value = 1;
             //Introduce safe strategy to maximise winning
         }
-        value = 16;
+        else {
+            value = 16;
+        }
     }
     if(m_currentPlayer->GetValueInHand() < value) {
         return "twist";
