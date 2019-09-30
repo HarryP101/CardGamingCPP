@@ -24,8 +24,12 @@ public:
     void CheckIfPlayerIsBust();
     int GetPlayerTurn();
     void SetNextPlayer();
-    std::string Decider();
+    void Decider();
     void Reset(int cardsDealt);
+    
+private:
+    enum BlackJackDecision {STICK, TWIST};
+    BlackJackDecision m_decision;
 };
 
 #endif /* GameSimulator_hpp */

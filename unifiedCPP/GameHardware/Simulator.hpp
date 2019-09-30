@@ -27,7 +27,7 @@ public:
     virtual BasicPlayer* GetCurrentPlayer();
     virtual bool CheckIfGameHasEnded() = 0;
     virtual int GameOutcome(std::map<BasicPlayer*, int>&) = 0;
-    virtual std::string Decider() = 0;
+    virtual void Decider() = 0;
     
 protected:
     BasicDeck* m_deck;

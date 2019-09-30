@@ -48,16 +48,14 @@ void BlackJackSimulator::CheckIfPlayerIsBust() {
 
 void BlackJackSimulator::AskPlayerStickOrTwist() {
     //Pass in strategy function here to determine to stick or twist
-//std::cout << "stick or twist? ";
-    std::string decision = Decider();
-//std::cout << "Decision was " << decision << std::endl;
+    Decider();
     
-    if(decision == "twist") {
+    if(m_decision == TWIST) {
         m_currentPlayer->DrawCard();
         CheckIfPlayerIsBust();
     }
     
-    if(decision == "stick") {
+    if(m_decision == STICK) {
         m_whichPlayersTurn = m_whichPlayersTurn * -1;
         m_currentPlayer->SetStatus(true, false);
         SetNextPlayer();
@@ -93,7 +91,7 @@ int BlackJackSimulator::GameOutcome(std::map<BasicPlayer*, int>& results) {
     return 0;
 }
 
-std::string BlackJackSimulator::Decider() {
+void BlackJackSimulator::Decider() {
     int value = 1;
     if(GetPlayerTurn() == 1) {
         value = 17;
@@ -108,9 +106,9 @@ std::string BlackJackSimulator::Decider() {
         }
     }
     if(m_currentPlayer->GetValueInHand() < value) {
-        return "twist";
+        m_decision = TWIST;
     }
-    else return "stick";
+    else m_decision = STICK;
 }
 
 void BlackJackSimulator::Reset(int cardsDealt) {
