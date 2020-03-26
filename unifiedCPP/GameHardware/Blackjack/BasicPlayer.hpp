@@ -17,7 +17,9 @@
 
 class BasicPlayer : public PlayerHandle {
 public:
-    BasicPlayer(BasicDeck* deck, int cardsDealt, int playerID) {
+    
+    BasicPlayer(BasicDeck* deck, int cardsDealt, int playerID)
+    {
         m_deck = deck;
         m_playerID = playerID;
         m_goneBust = false;
@@ -28,8 +30,10 @@ public:
         }
         m_noOfCardsInHand = cardsDealt;
     }
+    
     BasicCard PlayCard(int index);
-    int GetNoOfCardsInHand() {
+    int GetNoOfCardsInHand()
+    {
         return m_noOfCardsInHand;
     }
     std::vector<BasicCard> GetCardsInHand();
